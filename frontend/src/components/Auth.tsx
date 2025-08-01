@@ -1,13 +1,31 @@
 import type { SignupInput } from "@noisytech/medium-common";
 import { useState, type ChangeEvent } from "react";
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { BACKEND_URL } from "../config";
 
 export const Auth = ({ type }: { type: "signup" | "signin" }) => {
+    const navigate=useNavigate();
+
     const [postInputs, setPostInputs] = useState<SignupInput>({
         name: "",
         email: "",
         password: ""
     });
+
+    async function sendRequest() {
+        try{
+            const response = await axios.post(`${BACKEND_URL}/api/v1/user/${type ==="signup"? "signup" : "signin"}`,postInputs);
+            const jwt = response.data.jwt;
+            localStorage.setItem("token",jwt);
+            navigate("/blogs");
+        }
+        catch(e){
+            alert(`Error while ${type==="signin"? "Logging In!!": "Sign UP!!"}`)
+            //alert user here that the req failed
+        }
+    }
+
     return <div className="h-screen flex justify-center flex-col">
         <div className="flex justify-center">
             <div>
@@ -28,7 +46,7 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
                                 name: e.target.value
                             })
                         }} />
-                        : <></>}
+                        : null}
                     <LabelledInput label="Email" placeholder="abc@gmail.com" onChange={(e) => {
                         setPostInputs({
                             ...postInputs,
@@ -38,12 +56,12 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
                     <LabelledInput label="Password" type={"password"} placeholder="" onChange={(e) => {
                         setPostInputs({
                             ...postInputs,
-                            name: e.target.value
+                            password: e.target.value
                         })
                     }} />
                 </div>
                 <div className="pt-8">
-                    <button className="bg-black w-full hover:bg-gray-500 text-white font-semibold py-2 px-4 border border-blue-700 rounded-lg">
+                    <button onClick={sendRequest}    className="bg-black w-full hover:bg-gray-500 text-white font-semibold py-2 px-4 border border-blue-700 rounded-lg">
                         {type === "signin" ? "Sign In" : "Sign Up"}
                     </button>
                 </div>
