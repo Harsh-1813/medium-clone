@@ -1,7 +1,7 @@
 import axios from "axios"
 import { BACKEND_URL } from "../config"
 import { Appbar } from "./Appbar"
-import { useState, type ChangeEvent, type EventHandler } from "react"
+import { useState, type ChangeEvent} from "react"
 import { useNavigate } from "react-router-dom"
 
 export const Publish = () => {
