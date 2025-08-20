@@ -1,7 +1,6 @@
 // import React from 'react';
 import { Link } from 'react-router-dom';
 import HeroImage from '../assets/HeroImage.webp'
-// import { Appbar } from '../components/Appbar';
 // --- Reusable UI Components ---
 
 const HeroSection = () => (
@@ -16,9 +15,10 @@ const HeroSection = () => (
             </div>
             <div>
                 <Link to={"/signin"}>
-                <button className="ml-11 mt-10 rounded-3xl px-6 py-2 bg-black text-xl text-white font-semibold hover: bg-[#242424]">
-                    Start Reading
-                </button>
+                    <button className="text-white bg-black hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium 
+                        rounded-full text-xl px-5 py-2.5 text-center mt-9 ml-10">
+                        Start Reading
+                    </button>
                 </Link>
             </div>
         </div>
@@ -43,6 +43,23 @@ const Footer = () => (
     </footer>
 );
 
+const Header = () => (
+    <div className="border-b flex justify-between py-4 px-10">
+            <div className="flex flex-col pt-1 font-serif justify-center font-bold text-3xl cursor-pointer">
+                Medium
+            </div>
+        <div className="flex">
+            <Link to={"/signin"}>
+            <div className='flex flex-col justify-center pt-2 pr-4 text-sm font-sans'>Sign in</div>
+            </Link>
+            <Link to={'/signup'}>
+                <button type="button" className="text-white bg-black hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium 
+                        rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2">
+                    Get Started</button>
+            </Link>
+        </div>
+    </div>
+)
 
 // --- Main App Component ---
 export const Landing = () => {
@@ -50,7 +67,7 @@ export const Landing = () => {
         // The antialiased class smoothens the font for better readability.
         // flex flex-col min-h-screen ensures the footer stays at the bottom.
         <div className=" antialiased flex flex-col bg-[#f7f4ed]">
-            {/* <Appbar /> */}
+            <Header />
             <main >
                 <HeroSection />
             </main>
