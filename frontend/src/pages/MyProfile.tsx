@@ -1,7 +1,7 @@
 import { Appbar } from "../components/Appbar"
 import { useUserBlogs } from "../hooks"
 import { UserBlogs } from "../components/UserBlogs";
-import axios from "axios";
+// import axios from "axios";
 
 export const MyProfile = () => {
     const userId = localStorage.getItem("userId");

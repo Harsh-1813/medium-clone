@@ -1,7 +1,7 @@
-import React from 'react';
+// import React from 'react';
 import { Link } from 'react-router-dom';
 import HeroImage from '../assets/HeroImage.webp'
-import { Appbar } from '../components/Appbar';
+// import { Appbar } from '../components/Appbar';
 // --- Reusable UI Components ---
 
 const HeroSection = () => (

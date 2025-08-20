@@ -99,6 +99,7 @@ export const Dropdown = () => {
                         <button onClick={() => {
                             localStorage.clear();
                             navigate("/signin");
+                            setUser("");
                             }}>
                             Sign Out
                         </button>
