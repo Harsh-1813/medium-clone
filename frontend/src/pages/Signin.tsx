@@ -7,7 +7,7 @@ export const Signin = () => {
             <div>
                 <Auth type="signin" />
             </div>
-            <div className="none lg:block">
+            <div className="hidden lg:block">
                 <Quote />
             </div>
         </div>

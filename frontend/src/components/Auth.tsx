@@ -17,11 +17,16 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
         try{
             const response = await axios.post(`${BACKEND_URL}/api/v1/user/${type ==="signup"? "signup" : "signin"}`,postInputs);
             const jwt = response.data.jwt;
+            const user= response.data.user;
+            const userId= response.data.userId;
+
             localStorage.setItem("token",jwt);
+            localStorage.setItem("user",user);
+            localStorage.setItem("userId",userId);
             navigate("/blogs");
         }
         catch(e){
-            alert(`Error while ${type==="signin"? "Logging In!!": "Sign UP!!"}`)
+            alert(`Error while ${type==="signin"? "Logging In!! \nUsername or Password incorrect": "Sign UP!!"}`)
             //alert user here that the req failed
         }
     }
@@ -31,7 +36,7 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
             <div>
                 <div className="px-10">
                     <div className="text-3xl text-center font-extrabold">
-                        Create an Account
+                        {type==="signin"? "Login" : "Create an Account"}
                     </div>
                     <div className="text-slate-400 text-center">
                         {type === "signin" ? "Don't have an account?" : "Already have an account?"}

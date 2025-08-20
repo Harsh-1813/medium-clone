@@ -150,3 +150,32 @@ blogRouter.get('/:id', async (c) => {
 })
 
 
+blogRouter.get('/user/:authorId', async (c) => {
+    const authorId = c.req.param("authorId");
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate());
+
+    try {
+        const userBlog = await prisma.post.findMany({
+            where: {
+                authorId: authorId
+            },
+            select:{
+                id: true,
+                title: true,
+                content: true,
+            }
+        })
+        return c.json({
+            userBlog
+        })
+    } catch (e) {
+        c.status(411);
+        return c.json({
+            message: "Error while fetching user blog posts"
+        });
+    }
+})
+
+

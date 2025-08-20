@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-interface BlogCardProps {
+export interface BlogCardProps {
     id: string
     authorName: string;
     title: string;
@@ -30,10 +30,10 @@ export const BlogCard = ({
                 {publishedDate}
             </div>
         </div>
-        <div className="font-semibold text-xl pt-2">
+        <div className="font-bold text-3xl pt-2">
             {title}
         </div>
-        <div className="font-thin text-md">
+        <div className="font-thin text-md pt-2">
             {content.slice(0, 100) + "..."}
         </div>
         <div className="text-slate-400 font-thin text-sm pt-4">
@@ -44,13 +44,15 @@ export const BlogCard = ({
 }
 
 
-function Circle() {
+export function Circle() {
     return <div className="h-1 w-1 rounded-full bg-slate-400 ">
 
     </div>
 }
+
+
 export function Avatar({ name, size }: { name: string, size: "small" | "big" }) {
-    return <div className={`relative inline-flex items-center justify-center ${size == "small" ? "w-6 h-6" : "h-10 w-10"} overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600`}>
+    return <div className={`inline-flex items-center justify-center ${size == "small" ? "w-6 h-6" : "h-10 w-10"} overflow-hidden bg-gray-600 rounded-full `}>
         <span className={`font-medium ${size === "small" ? "text-sm" : "text-lg"} text-gray-600 dark:text-gray-300`}>{name[0]}</span>
     </div>
 }
